@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: white;
+}
+
+.homeTitle {
+  background: linear-gradient(90deg, rgb(14 165 233), rgb(252 211 77));
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
