@@ -2,13 +2,13 @@ import React, {useContext} from 'react'
 import {BsArrowRightCircleFill, BsTrophy} from 'react-icons/bs'
 import { TournamentContext } from './Tournament'
 
-export default function Stage({stage}) {
+export default function Stage({stage, teamOptions}) {
 
-  const [teams, setTeams, allBrackets, setAllBrackets, setWinner] = useContext(TournamentContext)
+  const [teams, setTeams, allBrackets, setAllBrackets, setWinner, getTeamName] = useContext(TournamentContext)
 
-  const getTeamName = (teamId) => {
+  /* const getTeamName = (teamId) => {
     return teams.find(team => team.id === teamId)?.name ?? ''
-  }
+  } */
 
   const advance = (iBracket, teamId) => {
     const nextStage = stage + 1
@@ -25,26 +25,26 @@ export default function Stage({stage}) {
     }
     setAllBrackets([...allBrackets.slice(0, nextStage), updateStageBrackets, ...allBrackets.slice(nextStage + 1)])
 
-
   }
 
   const declareWinner = (iBracket, teamId) => {
     console.log('The winner is '+ teamId)
     setWinner(teamId)
   }
+  
+  // all the team id:name pairs
+  const teamSelectOptions = teams.map((team) => ({[team.id] : team.name}))
+  //console.log(teamSelectOptions)
 
   const iconSize = 25;
   
   return (
     <div className='flex flex-col w-full h-full justify-around gap-4'>  
           {allBrackets[stage].map((bracket, i) => {
-            
-            //console.log('team: '+teams[i].id)
-            //console.log('bracket: '+bracket.team1)
 
             const team1Name = getTeamName(bracket.team1)
             const team2Name = getTeamName(bracket.team2)
-
+          //  console.log(team1Name+ ' vs '+team2Name)
             const finalStage = stage === allBrackets.length - 1
 
             return (
@@ -52,9 +52,17 @@ export default function Stage({stage}) {
                 key={bracket.id} 
                 className='bracket border-2 rounded-lg border-sky-300 h-[150px] w-[200px] flex flex-col justify-evenly'
               >  
-                <div className='p-2 overflow-hidden flex justify-between'>
-                  {team1Name}
-                  
+                <div 
+                  className='p-2 overflow-hidden flex justify-between' 
+                  data-bracket={bracket.id} 
+                  data-team='team1'
+                >
+                  {stage === 0 ? 
+                    teamOptions(bracket.team1)
+                    :
+                    team1Name    
+                  }
+
                   {bracket.team1 && !finalStage &&
                     <BsArrowRightCircleFill 
                       size={iconSize}
@@ -68,12 +76,22 @@ export default function Stage({stage}) {
                       onClick={() => declareWinner(i, bracket.team1)}
                       className='cursor-pointer self-center flex-shrink-0 bg-yellow-300 rounded-2xl p-1'
                     />
-                  }       
+                  }
+                         
                 </div>
                 <div className='border-b-2 border-dashed border-sky-300'>
                 </div>
-                <div className='p-2 overflow-hidden flex justify-between'>
-                  {team2Name }
+                <div 
+                  className='p-2 overflow-hidden flex justify-between'
+                  data-bracket={bracket.id} 
+                  data-team='team2'
+                >
+                  {stage === 0 ? 
+                    teamOptions(bracket.team2)
+                    :
+                    team2Name    
+                  }
+
                   {bracket.team2 && !finalStage && 
                   <BsArrowRightCircleFill 
                     size={iconSize}

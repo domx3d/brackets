@@ -2,14 +2,20 @@ import React, {useState, useContext} from 'react'
 import reactLogo from '../assets/brackets_logo.png'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import FullScreen from './fullScreen'
+
+
 
 export default function Navbar() {
 
   const [nav, setNav] = useState(false)
+  const [fullScreen, setFullScreen] = useState(false)
 
   const handleNav = () => {
     setNav(!nav)
   }
+
+
 
   return (
     <div className='bg-slate-800 sticky left-0 z-20'>
@@ -27,6 +33,9 @@ export default function Navbar() {
           </li>
           <li className='cursor-pointer'>
             <Link to='about' className='p-4'>About</Link>
+          </li>
+          <li>
+            <FullScreen fullScreen={fullScreen} setFullScreen={setFullScreen}/>
           </li>
         </ul>
         <div onClick={handleNav} className='block md:hidden'>
@@ -52,6 +61,9 @@ export default function Navbar() {
             <li className='p-4 border-b border-gray-600 flex'
               onClick={handleNav}>
               <Link to='/about' className='w-full'>About</Link>
+            </li>
+            <li>
+             <FullScreen fullScreen={fullScreen} setFullScreen={setFullScreen}/>
             </li>
           </ul>
         </div>

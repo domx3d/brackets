@@ -38,10 +38,18 @@ export default function Tournament() {
     console.log('w:'+winner)
   }, [winner])
 
+  const getTeamName = (teamId) => {
+    return teams.find(team => team.id === teamId)?.name ?? ''
+  }
+
+  const getWinningPlayers = (winTeamId) => {
+    return teams.find(team => team.id ===winTeamId)?.players ?? ''
+  }
+
   return (
 
     <TournamentContext.Provider 
-      value={[teams, setTeams, allBrackets, setAllBrackets, setWinner]}>
+      value={[teams, setTeams, allBrackets, setAllBrackets, setWinner, getTeamName]}>
       <div id="section2 " 
         className='bg-white py-16 px-4 flex flex-col w-screen min-w-fit'>
         <div className='w-[60vw] h-[2em] self-start sticky left-[20vw] mb-16'>
@@ -59,7 +67,8 @@ export default function Tournament() {
         { !create && <Brackets />}
         { winner &&
         <WinnerModal
-          winner={winner}
+          winner={getTeamName(winner)}
+          winningPlayers={getWinningPlayers(winner)}
           handleClose={() => setWinner(null)}
         />
         }

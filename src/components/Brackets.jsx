@@ -11,61 +11,49 @@ const getMaxBrackets = (numOfTeams) => {
   return max / 2;
 }
 
-/* const allBrackets = [
-  [
-    { id:1, name:'game1'}, {id:2, name: ' game2'}, {id:3, name: 'game3'}, {id:4, name: 'game4'}, 
-  ],
-  [
-    {id:5, name: 'game5'}, {id:6, name: 'game6'},
-  ],
-  [
-    {id:7, name: 'game7'}
-  ]
-] */
-
 
 export default function Brackets() {
   
   const [teams, setTeams, allBrackets, setAllBrackets] = useContext(TournamentContext)
-
+  
   useEffect(() => {
     window.localStorage.setItem('brackets', JSON.stringify(allBrackets));
   }, [allBrackets])
  
   useEffect(() => {
-    if(allBrackets.length === 0) {
-      console.log('creating brackets')
+    if(allBrackets.length === 0) { 
       createBrackets(setAllBrackets, teams.length)
     }
-    else console.log('brackets already created.')
   }, [])
 
+  const emptyFirstStage = () => (allBrackets[0].map(({ id, name}) => ({ id, name })))
+
   const fillOrderedBrackets = () => {
-    const firstStage = [...allBrackets[0]]
-    firstStage.forEach((bracket, index )=> {
-      if(index*2 < teams.length-1 ) {
-        bracket.team1 = teams[index*2].id
-        bracket.team2 = teams[index*2 +1].id
-      } else if (index*2 === teams.length-1){
-        bracket.team1 = teams[index*2].id
-      }
-      
-    });
+    const firstStage = emptyFirstStage()
+    const numOfTeam2 = teams.length - firstStage.length
+    
+    let teamIndex = 0, stageindex = 0
+    while(teamIndex < teams.length) {
+      firstStage[stageindex].team1 = teams[teamIndex++].id
+      if(stageindex < numOfTeam2) 
+        firstStage[stageindex].team2 = teams[teamIndex++].id
+      stageindex++
+    }
     setAllBrackets([firstStage,...allBrackets.slice(1)])
   }
 
   const fillRandomBrackets = () => {
-    const firstStage = [...allBrackets[0]]
+    const firstStage = emptyFirstStage()
     const randomTeams = [...teams].sort((a, b) => 0.5 - Math.random());
-    firstStage.forEach((bracket, index )=> {
-      if(index*2 < randomTeams.length-1 ) {
-        bracket.team1 = randomTeams[index*2].id
-        bracket.team2 = randomTeams[index*2 +1].id
-      } else if (index*2 === randomTeams.length-1){
-        bracket.team1 = randomTeams[index*2].id
-      }
-      
-    });
+    const numOfTeam2 = teams.length - firstStage.length
+    
+    let teamIndex = 0, stageindex = 0
+    while(teamIndex < randomTeams.length) {
+      firstStage[stageindex].team1 = randomTeams[teamIndex++].id
+      if(stageindex < numOfTeam2) 
+        firstStage[stageindex].team2 = randomTeams[teamIndex++].id
+      stageindex++
+    }
     setAllBrackets([firstStage,...allBrackets.slice(1)])
   }
 
@@ -84,6 +72,47 @@ export default function Brackets() {
     }
     setAllBrackets(newBrackets)
   }
+
+
+
+  const handleChange = (event) => {
+    const selectedOption = event.target.value ? Number(event.target.value) : ''
+  //const selectedOption = Number(event.target.value)
+    
+    const bracketId = event.target.parentNode.dataset.bracket
+    const team = event.target.parentNode.dataset.team
+
+    const updateStage0 = allBrackets[0].map((bracket) => {
+      if(bracket.id === bracketId) {
+        console.log(Number(selectedOption))
+        return {...bracket, [team]: selectedOption}
+      }
+      return bracket
+    })
+    setAllBrackets([updateStage0, ...allBrackets.slice(1)])
+    
+    
+  }
+
+  const options = []
+  for (let team of teams) {
+    options[[team.id]] = team.name
+  }
+    
+  const teamOptions = (topValue) => {
+  //options[]
+  //console.log("options")
+  return (
+    <select onChange={handleChange} value={1}>
+      <option value={topValue} >{options[topValue]}</option>
+      <option value=""></option>
+      {Object.entries(options).map(([value,label]) => (
+        <option key={value} value={value}>
+          {label}
+        </option>
+      ))}
+    </select>
+  )}
 
   return (
     <div className="flex flex-col md:items-center w-fit md:w-full">
@@ -106,15 +135,17 @@ export default function Brackets() {
             onClick={() => fillRandomBrackets()}
           >
             Fill Random
-          </button>
+          </button>          
         </div>
+
       </div>
-      <div className='flex flex-col w-fit h-fit'>
+      <div className='flex flex-col w-fit h-fit' id="bracketsFull">
         <div className='flex flex-row px-16 gap-0 '>
           {allBrackets.map((brackets, i) => (
             <div key={i} className='flex'>
               <div className='mx-4'>
-                <Stage stage={i}/>
+                <Stage stage={i}
+                  teamOptions={teamOptions}/>
                     
               </div>
               {i !== allBrackets.length-1 && 

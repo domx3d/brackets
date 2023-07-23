@@ -5,9 +5,6 @@
 html, body {
   margin: 0px;
   padding: 0px;
-}
-
-body {
   background-color: white;
 }
 
@@ -17,3 +14,16 @@ body {
   color: transparent;
   display: inline-block;
 }
+
+/* body:fullscreen {
+  overflow: scroll !important;
+}
+body:-ms-fullscreen {
+  overflow: scroll !important;
+}
+body:-webkit-full-screen {
+  overflow: scroll !important;
+}
+body:-moz-full-screen {
+  overflow: scroll !important;
+} */
