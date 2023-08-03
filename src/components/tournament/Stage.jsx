@@ -1,10 +1,13 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {BsArrowRightCircleFill, BsTrophy} from 'react-icons/bs'
 import { TournamentContext } from './Tournament'
+import useLongPress from '../hooks/UselongPress'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Stage({stage, teamOptions}) {
 
   const [teams, setTeams, allBrackets, setAllBrackets, setWinner, getTeamName] = useContext(TournamentContext)
+  const [holdData, setHoldData] = useState('')    // used for deleting team from bracket after holding
 
   /* const getTeamName = (teamId) => {
     return teams.find(team => team.id === teamId)?.name ?? ''
@@ -24,11 +27,30 @@ export default function Stage({stage, teamOptions}) {
       updateStageBrackets[nextBracket].team2 = teamId
     }
     setAllBrackets([...allBrackets.slice(0, nextStage), updateStageBrackets, ...allBrackets.slice(nextStage + 1)])
-
   }
 
+
+  // delete team from bracket after hold
+  const longPress = useLongPress(stage, () => {
+    // callback
+    //console.log('data: ' + holdData.bracket)
+    const updatedBrackets = allBrackets.map(stage =>
+      stage.map(bracket => {
+        if(bracket.id === holdData.bracket) {
+          bracket[holdData.team] = ''
+        }
+        return bracket
+      }))
+    toast('❌ Team removed!')
+
+  }, 
+  2000,         // 2s hold
+  setHoldData   // setting the data for deletion
+);
+
+
   const declareWinner = (iBracket, teamId) => {
-    console.log('The winner is '+ teamId)
+    //console.log('The winner is '+ teamId)
     setWinner(teamId)
   }
   
@@ -39,7 +61,8 @@ export default function Stage({stage, teamOptions}) {
   const iconSize = 25;
   
   return (
-    <div className='flex flex-col w-full h-full justify-around gap-4'>  
+    <>
+      <div className='flex flex-col w-full h-full justify-around gap-4'>  
           {allBrackets[stage].map((bracket, i) => {
 
             const team1Name = getTeamName(bracket.team1)
@@ -56,6 +79,7 @@ export default function Stage({stage, teamOptions}) {
                   className='p-2 overflow-hidden flex justify-between' 
                   data-bracket={bracket.id} 
                   data-team='team1'
+                  {...longPress}
                 >
                   {stage === 0 ? 
                     teamOptions(bracket.team1)
@@ -85,6 +109,7 @@ export default function Stage({stage, teamOptions}) {
                   className='p-2 overflow-hidden flex justify-between'
                   data-bracket={bracket.id} 
                   data-team='team2'
+                  {...longPress}
                 >
                   {stage === 0 ? 
                     teamOptions(bracket.team2)
@@ -110,15 +135,19 @@ export default function Stage({stage, teamOptions}) {
               </div>
             )}
           )}
-        </div>
+      </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+    </>
   )
 }
-/* 
-todo:
-
-teams posortamo v brackete - funkcija, lahko random ali po vrsti
-teams kot prop v stage, kjer dobimo team names glede na index
-
-bracket - delete team, promote, change team
-
-*/

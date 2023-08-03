@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Stage from './Stage';
 import { TournamentContext } from './Tournament';
 import StageLines from './StageLines';
+import { ToastContainer, toast } from 'react-toastify';
 
 const getMaxBrackets = (numOfTeams) => {
   let max = 1;
@@ -21,8 +22,8 @@ export default function Brackets() {
   }, [allBrackets])
  
   useEffect(() => {
-    if(allBrackets.length === 0) { 
-      createBrackets(setAllBrackets, teams.length)
+    if(allBrackets.length === 0 && teams.length > 1) { 
+      createBrackets()
     }
   }, [])
 
@@ -58,6 +59,10 @@ export default function Brackets() {
   }
 
   const createBrackets = () => {
+    if(teams.length <= 1) {
+      toast.warn('You need at least 2 teams to create brackets!')
+      return
+    }
     let maxBrackets = getMaxBrackets(teams.length)
     const newBrackets = []
     let gi = 1
@@ -71,6 +76,8 @@ export default function Brackets() {
       maxBrackets /= 2
     }
     setAllBrackets(newBrackets)
+
+    toast('😀 Brackets created!')
   }
 
 
@@ -84,7 +91,7 @@ export default function Brackets() {
 
     const updateStage0 = allBrackets[0].map((bracket) => {
       if(bracket.id === bracketId) {
-        console.log(Number(selectedOption))
+        //console.log(Number(selectedOption))
         return {...bracket, [team]: selectedOption}
       }
       return bracket

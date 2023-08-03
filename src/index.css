@@ -7,7 +7,13 @@ html, body {
   padding: 0px;
   background-color: white;
 }
-
+.home {
+  background: url('/bracket_bg.svg');
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .homeTitle {
   background: linear-gradient(90deg, rgb(14 165 233), rgb(252 211 77));
   -webkit-background-clip: text;
@@ -15,7 +21,54 @@ html, body {
   display: inline-block;
 }
 
-/* body:fullscreen {
+
+.brand-name {
+  font-family: 'Impact', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 2px;
+}
+
+.modalSizeParent {
+  height: 60%;
+  width: 95%;
+}
+
+@media (orientation:landscape) {
+  .modalSizeParent {
+    height: 70%;
+    width: 60%;
+  }
+
+}
+
+@media (max-height: 700px){
+  .homeTitle {
+    font-size: 2.25rem/* 36px */ !important;
+    
+  }
+  .homeTitle2 {
+    font-size: 1.25rem/* 36px */ !important;
+    
+  }
+  .homeTitle3 {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width:500px) {
+  .home2 {
+    gap: 1rem;
+  }
+  .homeTitle3 {
+    margin-bottom: 1rem;
+  }
+}
+
+.modalSizeChild {
+  height: clamp(200px, 100%, 600px);
+  width: clamp(200px, 100%, 800px);
+}
+
+body:fullscreen {
   overflow: scroll !important;
 }
 body:-ms-fullscreen {
@@ -26,4 +79,4 @@ body:-webkit-full-screen {
 }
 body:-moz-full-screen {
   overflow: scroll !important;
-} */
+}

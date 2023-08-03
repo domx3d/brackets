@@ -4,6 +4,7 @@ import Brackets from './Brackets'
 import SwitchSelector from "react-switch-selector";
 import { useState, useEffect, createContext } from 'react';
 import WinnerModal from './WinnerModal';
+import { ToastContainer} from 'react-toastify';
 
 const options = [
   {
@@ -35,7 +36,6 @@ export default function Tournament() {
 
   useEffect(() => {
     if(!winner) return
-    console.log('w:'+winner)
   }, [winner])
 
   const getTeamName = (teamId) => {
@@ -72,6 +72,18 @@ export default function Tournament() {
           handleClose={() => setWinner(null)}
         />
         }
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </TournamentContext.Provider>
   )

@@ -28,7 +28,6 @@ function closeFullscreen() {
 export default function FullScreen({fullScreen, setFullScreen}) {
   
   const resize = () => {
-    console.log(fullScreen)
     if(!fullScreen){
       openFullscreen()
     } else {
@@ -39,17 +38,19 @@ export default function FullScreen({fullScreen, setFullScreen}) {
 
   return (
     <button title='Toggle fullscreen'
-      className='flex items-center justify-center self-end p-4 font-medium text-white hover:scale-105 duration-300'
+      className='flex items-center justify-center self-end p-4 font-medium hover:scale-105 duration-300'
       onClick={() => resize()}
     >
     {fullScreen ?
       <BsArrowsAngleContract
         size={25}
+        color='#000000'
         className='cursor-pointer self-center flex-shrink-0'
       /> 
       :
       <BsArrowsAngleExpand
         size={25}
+        color='#000000'
         className='cursor-pointer self-center flex-shrink-0'
       />
     }

@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import { BsPlusCircle, BsFillTrashFill, BsXLg, BsX } from 'react-icons/bs'
 import { TournamentContext } from './Tournament';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function Teams() {
 
-  const [teams, setTeams] = useContext(TournamentContext)
+  const [teams, setTeams, allBrackets, setAllBrackets] = useContext(TournamentContext)
   const [newTeamAdded, setNewTeamAdded] = useState(false)
   const dragItem = useRef(null)
   const dragOverItem = useRef(null)
@@ -26,13 +28,26 @@ export default function Teams() {
     setNewTeamAdded(true)
     setTeams(prevTeams => [...prevTeams, newTeam]);
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+    
   };
 
   const deleteTeam = (teamId) => {
     const updatedTeams = teams.filter(team => {
       return team.id !== teamId
     });
-    setTeams(updatedTeams);
+    setTeams(updatedTeams)
+    console.log(allBrackets)
+    const updatedBrackets = allBrackets.map(stage =>
+      stage.map(bracket => {
+        if(bracket?.team1 === teamId)
+          bracket.team1 = ""
+        else if(bracket?.team2 === teamId) {
+          bracket.team2 = ""
+        }
+        return bracket
+      }))
+      setAllBrackets(updatedBrackets)
+      console.log(updatedBrackets)
   }
 
   const handleTeamNameChange = (event, teamId) => {
@@ -107,17 +122,33 @@ export default function Teams() {
     dragOverItem.current = null
    }
 
+   const deleteAllTeams = () => {
+    setTeams([])
+    setAllBrackets([])
+    toast('☠️ All the teams have been deleted.')
+   }
+
 
 
   return (
     
-      <div className='flex flex-col p-4 items-center '>
-        {teams.length === 0 && 
+      <div id='teams_div' className='flex flex-col p-4 items-center '>
+        {teams.length === 0 ?
           <div className='flex flex-col mb-8 p-4 rounded-xl border-0  border-cyan-500 md:w-[50%] shadow-xl'>
            <h4 className='text-center text-slate-500'>
-            Add up to <strong>32</strong> teams. <br/> If team has only one or two player you might put their name in the team field instead. </h4>
+            Add up to <strong>32</strong> teams. <br/> Adding players is optional. They will not show in the brackets.</h4>
+          </div>
+          :
+          <div className='w-full md:w-[50%] flex justify-end items-center'>
+            <button 
+              className=' flex items-center justify-center p-4 rounded-md border-2 font-medium my-6 py-3 text-black hover:scale-105 duration-300' 
+              onClick={deleteAllTeams}
+            >
+              Delete all
+            </button>
           </div>
         }
+        
         {teams.map((team, index) => (
           <div key={team.id} 
             draggable
@@ -184,6 +215,18 @@ export default function Teams() {
           <BsPlusCircle size={20} className='mr-2'/>
           Add Team
         </button>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
   )
 }
