@@ -136,18 +136,6 @@ export default function Stage({stage, teamOptions}) {
             )}
           )}
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </>
   )
 }

@@ -26,12 +26,12 @@ export default function WinnerModal({winner, winningPlayers, handleClose}) {
       
         <div className='bg-white modalSizeChild p-4 rounded flex flex-col justify-between items-center gap-4'>
           <h3 className='text-lg my-4 '>And the <span className='text-amber-300'>WINNERS</span> are:</h3>
-          <h4 className='font-bold mb-2 text-3xl'>{winner}</h4>
-          <div className='w-fit h-fit flex flex-col flex-wrap items-center justify-center overflow-hidden'>
+          <h4 className='font-bold mb-2 hwFont text-4xl'>{winner}</h4>
+          <div className='w-fit h-fit flex flex-col hwFont flex-wrap items-center justify-center overflow-hidden'>
             
             {winningPlayers ?
               winningPlayers.map((player) => (
-                <h5 key={player.id} className='text-md text-gray-600'>{player.name}</h5>
+                <h5 key={player.id} className='text-2xl text-gray-600'>{player.name}</h5>
               ))
               :
               ''

@@ -68,6 +68,10 @@ html, body {
   width: clamp(200px, 100%, 800px);
 }
 
+.hwFont {
+  font-family: 'Dancing Script', cursive;
+}
+
 body:fullscreen {
   overflow: scroll !important;
 }

@@ -125,7 +125,7 @@ export default function Teams() {
    const deleteAllTeams = () => {
     setTeams([])
     setAllBrackets([])
-    toast('☠️ All the teams have been deleted.')
+    toast('☠️ All the teams have been deleted!')
    }
 
 
@@ -215,18 +215,6 @@ export default function Teams() {
           <BsPlusCircle size={20} className='mr-2'/>
           Add Team
         </button>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-          theme="light"
-        />
       </div>
   )
 }
