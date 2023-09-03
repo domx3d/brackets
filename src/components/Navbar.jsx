@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link to='/tournament' className='p-4'>Tournament</Link>
           </li>
           <li className='cursor-pointer'>
-            <Link to='about' className='p-4'>About</Link>
+            <Link to='/about' className='p-4'>About</Link>
           </li>
           
         </ul>

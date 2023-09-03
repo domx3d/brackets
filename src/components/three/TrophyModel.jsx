@@ -7,8 +7,9 @@ import React, { useRef } from 'react'
 import { useEnvironment, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
+
 export function TrophyModel(props) {
-  const { nodes, materials } = useGLTF('/models/trophy.glb')
+  const { nodes, materials } = useGLTF('models/trophy.glb')
 
   //console.log(materials)
   const groupRef = useRef()
@@ -34,4 +35,4 @@ export function TrophyModel(props) {
   )
 }
 
-useGLTF.preload('/models/trophy.glb')
+useGLTF.preload('models/trophy.glb')

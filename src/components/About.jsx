@@ -25,6 +25,11 @@ export default function About() {
           to remove at <i>later stages</i> hold it for 2 seconds. </p>
           <p>Teams and brackets are saved locally in the browser. This means if you exit the page they are still there.</p>
         </div>
+        <h2 className='text-xl font-bold my-4 text-amber-200'>Coming features...</h2>
+        <div className='flex flex-col gap-3'>
+          <p>Keep track of scores.</p>
+          <p>Sharing data.</p>
+        </div>
         <div className='flex justify-evenly md:justify-start gap-16 md:w-[75%] mt-20'>
           <FaGithubSquare size={30}/>
           <FaInstagram size={30}/>

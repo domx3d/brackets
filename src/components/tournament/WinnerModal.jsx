@@ -10,7 +10,7 @@ export default function WinnerModal({winner, winningPlayers, handleClose}) {
   const bgClickClose = (e) => {
     if( e.target.id === 'wrapper' && !showTrophy) handleClose()
   }
-  console.log(winningPlayers)
+  //console.log(winningPlayers)
  
   return (
     <div id='wrapper'

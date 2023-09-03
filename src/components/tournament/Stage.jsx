@@ -44,7 +44,7 @@ export default function Stage({stage, teamOptions}) {
     toast('❌ Team removed!')
 
   }, 
-  2000,         // 2s hold
+  1500,         // 2s hold
   setHoldData   // setting the data for deletion
 );
 

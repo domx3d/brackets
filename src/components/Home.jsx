@@ -18,7 +18,7 @@ export default function Hero() {
         <p className='homeTitle2 md:text-2xl text-xl font-bold p-4 text-gray-500'>
           With up to 32 teams.
         </p>
-        <Link to='tournament' className='my-6'>
+        <Link to='/tournament' className='my-6'>
           <button className='bg-amber-300 w-[200px] rounded-md font-medium  mx-auto py-3 text-black hover:scale-105 duration-300'>
             Get Started
           </button></Link>
