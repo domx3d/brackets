@@ -6,7 +6,6 @@ export default function WinnerModal({winner, winningPlayers, handleClose}) {
   
   const [showTrophy, setShowTrophy] = useState(false)
 
-  const showModal = winner ? true : false
   const bgClickClose = (e) => {
     if( e.target.id === 'wrapper' && !showTrophy) handleClose()
   }
@@ -52,7 +51,8 @@ export default function WinnerModal({winner, winningPlayers, handleClose}) {
           onClick={handleClose}>
           <BsX size={40} />
         </button>
-        <Trophy />
+        <Trophy 
+          winnerTeam={winner}/>
       </div>
       }  
     </ div>

@@ -4,7 +4,7 @@ import { TrophyModel } from './TrophyModel'
 import { OrbitControls } from '@react-three/drei'
 import Confetti from './Confetti'
 
-export default function Trophy() {
+export default function Trophy({winnerTeam}) {
 
 
   return (
@@ -13,7 +13,7 @@ export default function Trophy() {
         <OrbitControls minDistance={1} maxDistance={5} enablePan={false}/>
         <ambientLight color='white' intensity={1} />
         <pointLight color='white' intensity={1} position={[0,0,10]}/>
-        <TrophyModel />
+        <TrophyModel winnerTeam={winnerTeam}/>
         <Confetti />
 
       </Canvas>
