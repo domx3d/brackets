@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import reactLogo from '/bracket_logo.svg'
+import logo from '/bracket_logo.svg'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import FullScreen from './fullScreen'
@@ -20,16 +20,17 @@ export default function Navbar() {
   return (
     <div className='sticky left-0 z-20'>
       <div className='flex justify-between items-center h-24 w-screen md:max-w-[1240px] text-black font-bold px-4 mx-auto'>
-      <div onClick={handleNav} className='block md:hidden'>
-          {nav ? 
-          <AiOutlineClose size={20} /> :
-          <AiOutlineMenu size={20} />
-        }
+        <div onClick={handleNav} className='block md:hidden'>
+            {nav ? 
+            <AiOutlineClose size={20} /> :
+            <AiOutlineMenu size={20} />
+          }
         </div>
         <div className='flex items-center md:mr-auto self-center'>
-          <img src={reactLogo} className="mr-2 w-12 h-12 rounded-full " alt="React logo" />
+          <img src={logo} className="mr-2 w-12 h-12 rounded-full " alt="React logo" />
           <h1 className='brand-name text-xl font-bold uppercase'>Brackets</h1>
         </div>
+        
         <ul className='hidden md:flex gap-8 items-center'> 
           <li className='cursor-pointer '>
             <Link to='/' className='p-4'>Home</Link>
@@ -40,8 +41,9 @@ export default function Navbar() {
           <li className='cursor-pointer'>
             <Link to='/about' className='p-4'>About</Link>
           </li>
-          
+            
         </ul>
+
         <div className='rounded-2xl lg:ml-20 md:ml-10 '> 
           <FullScreen fullScreen={fullScreen} setFullScreen={setFullScreen}/>
         </div>
