@@ -10,7 +10,7 @@ import { CanvasTexture } from 'three';
 
 
 export function TrophyModel({winnerTeam}) {
-  const { nodes, materials } = useGLTF('models/trophy.glb')
+  const { nodes, materials } = useGLTF('models/trophy_compressed.glb')
   const groupRef = useRef()
   
   useFrame((_, delta) => {
@@ -24,7 +24,7 @@ export function TrophyModel({winnerTeam}) {
   Object.keys(materials).forEach((key) => {
     materials[key].envMap = envMap
     if(key === 'gold')
-      materials[key].roughness = 0.1
+      materials[key].roughness = 0.15
     if(key === 'gold_sign') {
       materials[key].roughness = 0.8
       materials[key].map = textTexture

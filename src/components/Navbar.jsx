@@ -28,10 +28,10 @@ export default function Navbar() {
         </div>
         <div className='flex items-center md:mr-auto self-center'>
           <img src={logo} className="mr-2 w-12 h-12 rounded-full " alt="React logo" />
-          <h1 className='brand-name text-xl font-bold uppercase'>Brackets</h1>
+          <h1 className='brand-name font-bold uppercase text-xl md:text-2xl lg:text-3xl'>Brackets</h1>
         </div>
         
-        <ul className='hidden md:flex gap-8 items-center'> 
+        <ul className='hidden md:flex gap-8 items-center text-lg md:text-xl lg:text-2xl'> 
           <li className='cursor-pointer '>
             <Link to='/' className='p-4'>Home</Link>
           </li>

@@ -49,7 +49,7 @@ export default function WinnerModal({winner, winningPlayers, handleClose}) {
       <div className='fixed inset-0 flex flex-col justify-center items-center'>
         <button className='text-white fixed top-32 right-4 md:right-[25%] z-50'
           onClick={handleClose}>
-          <BsX size={40} />
+          <BsX size={60} color='white'/>
         </button>
         <Trophy 
           winnerTeam={winner}/>

@@ -1,6 +1,6 @@
 import { HashRouter  as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Hero from './components/Hero'
 import About from './components/About'
 import Tournament from './components/tournament/Tournament'
 
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path='/'
               element={
-                <Home />
+                <Hero />
               }/>
             <Route exact path='/tournament'
             element={
