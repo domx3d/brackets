@@ -9,26 +9,34 @@ export default function About() {
   return (
     <div className='max-w-[1240px] mx-auto py-16 px-4 grid gap-8 text-gray-500'>
       <div>
-        <h1 className='w-full text-3xl font-bold text-amber-300'>About</h1>
-        <p className='py-4 '>
-          Welcome to <strong>Brackets</strong> app, your ultimate companion for organizing and tracking tournament progress! 
-        </p>
-        <h2 className='text-xl font-bold my-4 text-amber-200'>How it works</h2>
-        <div className='flex flex-col gap-3'>
-          <p>First create teams <b>(max. 32)</b> and 
-          set their <b>names</b> that you want displayed in brackets.</p>
-          <p>You can also add <b>players</b> to each team (optional).</p>
-          <p>First time you switch to <b>brackets tab</b>, brackets are automatically generated.</p>
-          <p>To <b>create new</b> brackets (reset) click <i>Create Brackets</i>.</p>
-          <p>You can <b>manually fill</b> the brackets at <i>first stage</i> or use one of the <b>fill options</b>.</p>
-          <p>To <b>remove</b> team from bracket at <i>first stage</i> select empty in dropdown,
-          to remove at <i>later stages</i> hold it for 2 seconds. </p>
-          <p>Teams and brackets are saved locally in the browser. This means if you exit the page they are still there.</p>
+        <h1 className='w-full text-3xl font-bold text-amber-300 mb-12'>About</h1>
+        <div className='flex flex-col md:flex-row gap-8'>
+
+        
+          <div className='sm:w-[50%] flex flex-col gap-3'>
+            <p>
+            ✧ I got the idea to create brackets from my friends while they were playing beer pong at a party.
+            </p>
+            <p>
+            ✧ It is meant to be a utility application everyone can use, on every device.
+            </p>
+            <p>
+            ✧ So I made it as responsive as possible and to give it some life I also put in an immersive celebration at the finish.
+            </p>
+            <p>
+            ✧ The app was made with React, Tailwind, React Three Fiber, Framer Motion, etc. 
+              Blender was used for modelling and inkscape for illustrations.
+            </p>
+          </div>
+        
+        
+          <img src='trophy.svg' alt='trophy' className='w-48 sm:ml-32 self-center mt-8 mb-12'/>
         </div>
-        <h2 className='text-xl font-bold my-4 text-amber-200'>Coming features...</h2>
-        <div className='flex flex-col gap-3'>
-          <p>Keep track of scores.</p>
-          <p>Sharing data.</p>
+        <h2 className='text-xl font-bold mt-8 mb-4 text-amber-200'>What I could add...</h2>
+        <div className='flex flex-col gap-3 ml-4'>
+          <p>#️⃣ Keep track of scores</p>
+          <p>📤 Exporting</p>
+          <p>📎 Sharing</p>
         </div>
         <div className='flex justify-evenly md:justify-start gap-16 md:w-[75%] mt-20'>
           <FaGithubSquare size={30}/>

@@ -85,3 +85,49 @@ body:-webkit-full-screen {
 body:-moz-full-screen {
   overflow: scroll !important;
 }
+
+.instructions-p {
+  @apply max-w-[250px];
+}
+
+#svg-cup1 {
+  animation: circleanime 3s infinite linear;
+  /* transform-origin: left; */
+  transform-origin: 13% 0%;
+  /* transform-box: fill-box; */
+}
+
+@keyframes circleanime {
+  from {
+    transform: matrix(.38949, 0, 0, .38949, 167.97, 83.92) rotateY(0deg) ;
+  }
+  to {
+    transform: matrix(.38949, 0, 0, .38949, 167.97, 83.92) rotateY(360deg) ;
+  }
+}
+
+#podium-div {
+  margin-top: 6rem;
+}
+
+#arrow {
+  transition: all 0.3s ease-out;
+  animation: breathe 4s infinite linear;  
+}
+
+#arrow:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100%{
+    opacity: 0.3;
+  }
+}

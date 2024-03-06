@@ -41,7 +41,7 @@ export function TrophyModel({winnerTeam}) {
   )
 }
 
-useGLTF.preload('models/trophy.glb')
+useGLTF.preload('models/trophy_compressed.glb')
 
 function createTextTexture(text, fontColor, bgColor, fontSize) {
   const canvas = document.createElement('canvas');

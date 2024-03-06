@@ -1,5 +1,13 @@
 import * as React from "react"
-const SvgComponent = (props) => (
+import { motion } from "framer-motion"
+
+const SvgComponent = (props) => {
+  
+  const podiumDur = 0.5
+  const tokenDur = 0.5
+  const initialDelay = 0.2
+
+  return (
   <svg
     width={980.82}
     height={673.25}
@@ -8,13 +16,26 @@ const SvgComponent = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <g
+    <motion.g
       id="svg-all"
       transform="translate(-71.623 -210.61)"
       strokeLinecap="square"
       strokeLinejoin="bevel"
+      style={{transformBox:'center'}}
+       initial={{ x: -71.623, y: -100 }}
+      animate={{ x: -71.623, y: -210.61 }}
+      transition={{ duration: podiumDur, type: "spring", bounce: 0.5, delay: initialDelay}}
     >
-      <g id="svg-manage" transform="matrix(.38949 0 0 .38949 40.394 146.7)">
+      <motion.g id="svg-manage" transform="matrix(.38949 0 0 .38949 40.394 146.7)"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: tokenDur, ease:'linear', delay:  initialDelay + podiumDur + tokenDur }}
+      >
+        <motion.g
+          initial={{ rotateY: "0" }}
+          animate={{ rotateY: "-720deg" }}
+          transition={{ duration: 0.6, ease:'easeOut', delay: initialDelay + podiumDur + tokenDur }}
+        >
         <g transform="translate(102.28 204.55)" fill="none">
           <circle
             transform="rotate(.13412)"
@@ -103,13 +124,22 @@ const SvgComponent = (props) => (
             strokeWidth={1.0583}
           />
         </g>
-      </g>
-      <g
+        </motion.g>
+      </motion.g>
+      <motion.g
         id="svg-cup"
         transform="matrix(.38949 0 0 .38949 167.97 83.92)"
         fill="none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: tokenDur, ease:'linear', delay: initialDelay + podiumDur + 2*tokenDur }}
       >
-        <g transform="translate(-17.268 301.1)">
+        <motion.g
+          initial={{ rotateY: "0" }}
+          animate={{ rotateY: "-720deg" }}
+          transition={{ duration: 0.6, ease:'easeOut', delay: initialDelay + podiumDur + 2*tokenDur}}
+        >
+        <g id="circle" transform="translate(-17.268 301.1)">
           <circle
             transform="rotate(.13412)"
             cx={102.28}
@@ -163,50 +193,60 @@ const SvgComponent = (props) => (
             </tspan>
           </text>
         </g>
-      </g>
-      <g
+        </motion.g>
+      </motion.g>
+      <motion.g
         id="svg-teams"
         transform="matrix(.38949 0 0 .38949 329.16 118.41)"
         fill="none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: tokenDur, ease:'linear', delay: initialDelay + podiumDur }}
       >
-        <g transform="translate(-382.12 372.73)" strokeWidth={2.0688}>
-          <path
-            d="m299.96-26.433a10.455 10.455 0 0 0-10.104 7.7192 10.455 10.455 0 0 1 5.1448 9.0284 10.455 10.455 0 0 1-0.37477 2.6936 10.455 10.455 0 0 0 5.2852 1.4693 10.455 10.455 0 0 0 10.48-10.431 10.455 10.455 0 0 0-10.431-10.48zm-0.0576 24.601a15.375 13.753 0.13412 0 0-13.047 6.4509 15.375 13.753 0.13412 0 1 13 13.605 15.375 13.753 0.13412 0 1-0.0344 0.80561h0.0323l-0.0475 20.161 15.376 0.03637 0.0616-26.465h-0.0318a15.375 13.753 0.13412 0 0 0.0338-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
-            stopColor="#000000"
-            stroke="#b3b3b3"
-          />
-          <path
-            d="m284.57-20.165a10.455 10.455 0 0 0-9.7749 6.6878 10.455 10.455 0 0 1 4.8185 8.8299 10.455 10.455 0 0 1-0.69803 3.728 10.455 10.455 0 0 0 5.6054 1.6648 10.455 10.455 0 0 0 10.48-10.431 10.455 10.455 0 0 0-10.431-10.479zm-0.0576 24.601a15.375 13.753 0.13412 0 0-12.191 5.3534 15.375 13.753 0.13412 0 1 12.147 13.473 15.375 13.753 0.13412 0 1-0.0338 0.80561h0.0318l-0.05 21.391 15.375 0.03586 0.0621-26.465h-0.0323a15.375 13.753 0.13412 0 0 0.0344-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
-            stopColor="#000000"
-            stroke="#999"
-          />
-          <path
-            d="m269.18-15.127a10.455 10.455 0 0 0-10.479 10.431 10.455 10.455 0 0 0 10.431 10.479 10.455 10.455 0 0 0 10.479-10.431 10.455 10.455 0 0 0-10.431-10.48zm-0.0571 24.601a15.375 13.753 0.13412 0 0-15.408 13.717 15.375 13.753 0.13412 0 0 0.0303 0.80561l-0.0323-5.04e-4 -0.0621 26.465 30.751 0.07172 0.0616-26.465h-0.0318a15.375 13.753 0.13412 0 0 0.0338-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
-            stopColor="#000000"
-            stroke="#808080"
-          />
-        </g>
-        <g transform="translate(-199.74 292.89)">
-          <circle
-            transform="rotate(.13412)"
-            cx={102.28}
-            cy={91.659}
-            r={66.146}
-            stopColor="#000000"
-            stroke="#808080"
-            strokeWidth={3.175}
-          />
-          <circle
-            transform="rotate(.13412)"
-            cx={102.28}
-            cy={91.659}
-            r={63.157}
-            stopColor="#000000"
-            stroke="#fcd34d"
-            strokeWidth={1.1226}
-          />
-        </g>
-      </g>
+        <motion.g
+          initial={{ rotateY: "0" }}
+          animate={{ rotateY: "-720deg" }}
+          transition={{ duration: 0.6, ease:'easeOut', delay: initialDelay + podiumDur }}
+        >
+          <g transform="translate(-382.12 372.73)" strokeWidth={2.0688}>
+            <path
+              d="m299.96-26.433a10.455 10.455 0 0 0-10.104 7.7192 10.455 10.455 0 0 1 5.1448 9.0284 10.455 10.455 0 0 1-0.37477 2.6936 10.455 10.455 0 0 0 5.2852 1.4693 10.455 10.455 0 0 0 10.48-10.431 10.455 10.455 0 0 0-10.431-10.48zm-0.0576 24.601a15.375 13.753 0.13412 0 0-13.047 6.4509 15.375 13.753 0.13412 0 1 13 13.605 15.375 13.753 0.13412 0 1-0.0344 0.80561h0.0323l-0.0475 20.161 15.376 0.03637 0.0616-26.465h-0.0318a15.375 13.753 0.13412 0 0 0.0338-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
+              stopColor="#000000"
+              stroke="#b3b3b3"
+            />
+            <path
+              d="m284.57-20.165a10.455 10.455 0 0 0-9.7749 6.6878 10.455 10.455 0 0 1 4.8185 8.8299 10.455 10.455 0 0 1-0.69803 3.728 10.455 10.455 0 0 0 5.6054 1.6648 10.455 10.455 0 0 0 10.48-10.431 10.455 10.455 0 0 0-10.431-10.479zm-0.0576 24.601a15.375 13.753 0.13412 0 0-12.191 5.3534 15.375 13.753 0.13412 0 1 12.147 13.473 15.375 13.753 0.13412 0 1-0.0338 0.80561h0.0318l-0.05 21.391 15.375 0.03586 0.0621-26.465h-0.0323a15.375 13.753 0.13412 0 0 0.0344-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
+              stopColor="#000000"
+              stroke="#999"
+            />
+            <path
+              d="m269.18-15.127a10.455 10.455 0 0 0-10.479 10.431 10.455 10.455 0 0 0 10.431 10.479 10.455 10.455 0 0 0 10.479-10.431 10.455 10.455 0 0 0-10.431-10.48zm-0.0571 24.601a15.375 13.753 0.13412 0 0-15.408 13.717 15.375 13.753 0.13412 0 0 0.0303 0.80561l-0.0323-5.04e-4 -0.0621 26.465 30.751 0.07172 0.0616-26.465h-0.0318a15.375 13.753 0.13412 0 0 0.0338-0.80561 15.375 13.753 0.13412 0 0-15.343-13.788z"
+              stopColor="#000000"
+              stroke="#808080"
+            />
+          </g>
+          <g transform="translate(-199.74 292.89)">
+            <circle
+              transform="rotate(.13412)"
+              cx={102.28}
+              cy={91.659}
+              r={66.146}
+              stopColor="#000000"
+              stroke="#808080"
+              strokeWidth={3.175}
+            />
+            <circle
+              transform="rotate(.13412)"
+              cx={102.28}
+              cy={91.659}
+              r={63.157}
+              stopColor="#000000"
+              stroke="#fcd34d"
+              strokeWidth={1.1226}
+            />
+          </g>
+        </motion.g>
+      </motion.g>
       <g transform="translate(71.324 257.04)">
         <path
           d="m101.33 24.5-21.651 12.5h79.375v33.531h79.375v61.024l21.383 0.14293v-73.698h-73.612v-33.5zm-79.375 23.578-21.651 12.5h79.375v-12.5z"
@@ -293,7 +333,8 @@ const SvgComponent = (props) => (
           {"teams"}
         </tspan>
       </text>
-    </g>
+    </motion.g>
   </svg>
-)
+)}
+
 export default SvgComponent

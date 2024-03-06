@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import logo from '/bracket_logo.svg'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import FullScreen from './fullScreen'
+import FullScreen from './FullScreen'
 
 
 
@@ -18,7 +18,7 @@ export default function Navbar() {
 
 
   return (
-    <div className='sticky left-0 z-20'>
+    <nav className='sticky left-0 z-20'>
       <div className='flex justify-between items-center h-24 w-screen md:max-w-[1240px] text-black font-bold px-4 mx-auto'>
         <div onClick={handleNav} className='block md:hidden'>
             {nav ? 
@@ -69,6 +69,6 @@ export default function Navbar() {
             </ul>
           </div>
       </div>
-    </div>
+    </nav>
   )
 }
